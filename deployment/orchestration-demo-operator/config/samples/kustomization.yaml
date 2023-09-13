@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- ashokgudise_v1alpha1_orchestrationdemoapi.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

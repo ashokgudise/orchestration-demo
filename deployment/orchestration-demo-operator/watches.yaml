@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: ashokgudise.demos.com
+  version: v1alpha1
+  kind: OrchestrationDemoApi
+  chart: helm-charts/orchestration-demo-api
+#+kubebuilder:scaffold:watch

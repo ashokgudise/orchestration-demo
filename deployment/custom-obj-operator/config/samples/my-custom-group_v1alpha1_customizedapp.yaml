@@ -1,0 +1,48 @@
+apiVersion: my-custom-group.ashok-demos.com/v1alpha1
+kind: CustomizedApp
+metadata:
+  name: customizedapp-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/customized-app/values.yaml
+  affinity: {}
+  autoscaling:
+    enabled: false
+    maxReplicas: 100
+    minReplicas: 1
+    targetCPUUtilizationPercentage: 80
+  fullnameOverride: customized-object-demo
+  image:
+    pullPolicy: IfNotPresent
+    repository: ashok-demos/orchestration-demo-api
+  imagePullSecrets: []
+  ingress:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+    enabled: true
+    hosts:
+    - host: customized-object.local
+      paths:
+      - backend:
+          serviceName: customized-object-demo-svc
+          servicePort: 8080
+        path: /
+        pathType: Prefix
+    tls: []
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources: {}
+  securityContext: {}
+  service:
+    port: 8080
+    targetPort: 8080
+    type: ClusterIP
+  serviceAccount:
+    create: true
+    name: customized-user
+  tolerations: []
+  
+  

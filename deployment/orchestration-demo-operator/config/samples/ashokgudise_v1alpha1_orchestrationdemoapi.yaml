@@ -1,0 +1,53 @@
+apiVersion: ashokgudise.demos.com/v1alpha1
+kind: OrchestrationDemoApi
+metadata:
+  name: orchestrationdemoapi-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/orchestration-demo-api/values.yaml
+  actuator:
+    initialDelaySeconds: 30
+    livenessProbePath: /actuator/health
+    readinessProbePath: /actuator/health
+    timeoutSeconds: 30
+  affinity: {}
+  autoscaling:
+    enabled: false
+    maxReplicas: 100
+    minReplicas: 1
+    targetCPUUtilizationPercentage: 80
+  fullnameOverride: ""
+  image:
+    pullPolicy: IfNotPresent
+    repository: ashokgudise/orchestration-demo-api
+    tag: "1.0"
+  imagePullSecrets: []
+  ingress:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    className: nginx
+    enabled: true
+    hosts:
+    - host: orchestration-demo.local
+      paths:
+      - path: /swagger-ui/index.html
+        pathType: Prefix
+    name: orchestration-demo-api-ingress
+    tls: []
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources: {}
+  securityContext: {}
+  service:
+    port: 8080
+    targetPort: 8080
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: ""
+  tolerations: []
+  
+  
