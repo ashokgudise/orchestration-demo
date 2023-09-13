@@ -39,12 +39,16 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: {{ .Values.actuator.livenessProbePath }}
               port: http
+            initialDelaySeconds: {{ .Values.actuator.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.actuator.timeoutSeconds }}
           readinessProbe:
             httpGet:
-              path: /
+              path: {{ .Values.actuator.readinessProbePath }}
               port: http
+            initialDelaySeconds: {{ .Values.actuator.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.actuator.timeoutSeconds }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

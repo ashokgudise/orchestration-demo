@@ -1,6 +1,8 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "orchestration-demo-api.fullname" . -}}
+{{- $ingressName := .Values.ingress.name -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $svcTargetPort := .Values.service.targetPort -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -15,7 +17,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $ingressName }}
   labels:
     {{- include "orchestration-demo-api.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -24,6 +26,11 @@ metadata:
   {{- end }}
 spec:
   {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  defaultBackend: 
+    service: 
+      name: {{ $fullName }} 
+      port: 
+        number: {{ $svcPort }} 
   ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
   {{- if .Values.ingress.tls }}
@@ -51,7 +58,7 @@ spec:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: {{ $svcPort }}
+                  number: {{ $svcTargetPort }}
               {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
