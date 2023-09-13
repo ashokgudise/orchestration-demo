@@ -22,7 +22,7 @@ kubectl logs -n <namespace> <ingress-controller-pod-name>
 #Create Operator Helm Chart 
 operator-sdk init --plugins=helm.sdk.operatorframework.io/v1 \
       --domain=ashokgudise.docker.io \
-      --helm-chart=/Users/ashokgudise/IdeaProjects/Quarkus/orchestration-demo-api/deployment/orchestration-demo-api
+      --helm-chart=~./orchestration-demo-api/deployment/orchestration-demo-api
 
 #Build Docker Image for Operator 
 docker buildx build -t ashokdemos/customized-object-operator:v1.0.0 . 
