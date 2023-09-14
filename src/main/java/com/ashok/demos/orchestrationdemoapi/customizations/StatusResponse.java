@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class StatusResponse {
+public class StatusResponse {
 
     private String status;
     private LocalDateTime datetime;

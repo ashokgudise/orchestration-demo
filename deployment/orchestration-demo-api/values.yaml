@@ -41,6 +41,12 @@ service:
   port: 8080
   targetPort: 8080
 
+app:
+  customizations:
+    profile: custom
+    client_name: My-Coffee-Brand
+    welcome_message: Welcome to the customized app from K8s
+
 actuator:
   livenessProbePath: /actuator/health
   readinessProbePath: /actuator/health

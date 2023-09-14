@@ -7,6 +7,11 @@
 #Create Helm Charts for your Spring Boot App
 helm install --debug orchestration-demo-api ./deployment/orchestration-demo-api/
 
+#Directly install in Kubernetes 
+ helm upgrade --debug orchestration-demo-api ./deployment/orchestration-demo-api -n ingress-nginx
+
+
+
 http://localhost:8080/actuator/health
 
 nslookup orchestration-demo.local

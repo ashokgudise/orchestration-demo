@@ -32,6 +32,13 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: {{ .Values.app.customizations.profile }}
+            - name: CLIENT_NAME
+              value: {{ .Values.app.customizations.client_name }}
+            - name: WELCOME_MESSAGE
+              value: {{ .Values.app.customizations.welcome_message }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

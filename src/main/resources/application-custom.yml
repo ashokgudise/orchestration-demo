@@ -2,8 +2,8 @@ server:
   port: 8080
 
 app:
-  client-name: ${CLIENT_NAME} / 123
-  welcome-message: ${WELCOME_MESSAGE} / Welcome on board to the Customization World,
+  client-name: ${CLIENT_NAME}
+  welcome-message: ${WELCOME_MESSAGE}
 
 management:
   endpoints:

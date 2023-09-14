@@ -26,7 +26,7 @@ serviceAccount:
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
   # capabilities:
@@ -34,12 +34,18 @@ securityContext: {}
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+# runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 8080
   targetPort: 8080
+
+app:
+  customizations:
+    profile: custom
+    client_name: My-Coffee-Brand
+    welcome_message: Welcome to the customized app from K8s
 
 actuator:
   livenessProbePath: /actuator/health
@@ -47,7 +53,7 @@ actuator:
   initialDelaySeconds: 30
   timeoutSeconds: 30
 ingress:
-  name: orchestration-demo-api-ingress 
+  name: orchestration-demo-api-ingress
   enabled: true
   className: "nginx"
   annotations:
@@ -75,7 +81,7 @@ resources: {}
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-  #   memory: 128Mi
+#   memory: 128Mi
 
 autoscaling:
   enabled: false

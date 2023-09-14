@@ -1,5 +1,7 @@
-package com.ashok.demos.orchestrationdemoapi.customizations;
+package com.ashok.demos.orchestrationdemoapi.controller;
 
+import com.ashok.demos.orchestrationdemoapi.customizations.CustomService;
+import com.ashok.demos.orchestrationdemoapi.customizations.StatusResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class CustomController {
 
     @RequestMapping("/status")
     public ResponseEntity<StatusResponse> getStatus() {
-        StatusResponse response = new StatusResponse("running", LocalDateTime.now(ZoneOffset.UTC));
+        StatusResponse response = new StatusResponse(customerService.getWelcomeMessage(), LocalDateTime.now(ZoneOffset.UTC));
         return ResponseEntity
                 .ok()
                 .body(response);
